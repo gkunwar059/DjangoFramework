@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello World ! Welcome to the World !</h1>
+    <p>Total Products:{{total_products}}</p>
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>unit_price</th>
+        <th>inventory</th>
+        <th>Discounted Price</th>
+        <th>Collection</th>
+        {% comment %}
+        <th>collection</th>
+        <th />
+        {% endcomment %}
+      </tr>
+
+      {% for product in products %} {% comment %}
+      <p>{{product}}</p>
+      {% endcomment %}
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.unit_price }}</td>
+        <td>{{product.inventory}}</td>
+
+        <td>{{product.discount_price | floatformat:2}}</td>
+
+        <td>{{product.collection}}</td>
+      </tr>
+
+      {% endfor %}
+    </table>
+
+    <p />
+  </body>
+</html>
