@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from django.db import models
 
 
@@ -31,3 +33,22 @@ class ProductImage(models.Model):
     product=models.ForeignKey(Product, on_delete=models.CASCADE)
     image=models.ImageField(upload_to="images/store/products", null=True,blank=True)
     
+# important field
+# auto now  => 
+class Cart(models.Model):
+    id=models.UUIDField(primary_key=True,default=uuid4)
+    created_date=models.DateTimeField(auto_now_add=True)
+    modified_at=models.DateTimeField(auto_now=True)
+
+class CartIterm(models.Model):
+    cart=models.ForeignKey(Cart,on_delete=models.CASCADE,related_name='items')
+    quantity=models.PositiveIntegerField()
+    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+    
+
+# class Rating(models.Model):
+#     # id=models.BigIntegerField()
+#     rating=models.ForeignKey(Product,on_delete=models.CASCADE ,related_name='items')
+#     comment=
+
+

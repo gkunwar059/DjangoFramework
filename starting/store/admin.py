@@ -2,7 +2,7 @@ from typing import Any
 
 from django.contrib import admin
 from django.db.models.query import QuerySet
-from store.models import Collection, Product, ProductImage
+from store.models import Cart, CartIterm, Collection, Product, ProductImage
 
 
 # @admin.register(ProductImage)
@@ -69,7 +69,15 @@ class CollectionAdmin(admin.ModelAdmin):
     list_display = ('id','name','featured_product')
     
 
+class CartItermInlineAdmin(admin.TabularInline):
+    model=CartIterm
+    list_display=('quantity','product')
 
+
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display=('id',)
+    inlines=[CartItermInlineAdmin]
 
 
 
